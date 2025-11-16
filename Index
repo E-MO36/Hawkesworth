@@ -40,6 +40,20 @@
             background-attachment: fixed; /* Makes the shine and logo stationary */
             position: relative; /* Needed for pseudo-element positioning */
         }
+
+        /* Pulsating glow for the background logo */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px rgba(255, 193, 7, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(255, 193, 7, 0.7); }
+            100% { box-shadow: 0 0 10px rgba(255, 193, 7, 0.4); }
+        }
+
+        /* Digital Rain / Matrix Effect */
+        @keyframes digital-rain {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
         .sleek-background::before {
             content: '';
             position: absolute;
@@ -50,11 +64,46 @@
             /* Adjusted opacity for brighter logo */
             background-color: rgba(15, 23, 42, 0.4); 
             z-index: -1; /* Place behind content */
+            animation: pulse-glow 4s infinite alternate ease-in-out; /* Apply pulsating glow to the whole background area */
         }
+
+        .sleek-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.01) 1px, /* Very subtle light dots/lines */
+                transparent 1px
+            );
+            background-size: 100% 10px; /* Controls density of "rain" */
+            animation: digital-rain 60s linear infinite; /* Slow, continuous fall */
+            opacity: 0.03; /* Very faint */
+            z-index: -2; /* Even further back than the pseudo-element with glow */
+        }
+
+
         body {
             position: relative; /* Ensure body content is above the pseudo-element */
             z-index: 0;
         }
+        
+        /* --- Hero Entrance Animation (Corporate Look) --- */
+        @keyframes corporate-fade-in {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-reveal {
+            opacity: 0;
+            animation: corporate-fade-in 0.8s ease-out forwards;
+        }
+        .hero-reveal.delay-1 { animation-delay: 0.1s; }
+        .hero-reveal.delay-2 { animation-delay: 0.3s; }
+        .hero-reveal.delay-3 { animation-delay: 0.5s; }
+
 
         /* Custom shadow for a polished, elevated look and border refinement */
         .shiny-card {
@@ -67,10 +116,12 @@
         }
         .shiny-card:hover {
             transform: translateY(-7px); /* More pronounced lift */
-            /* Enhanced shadow with a gold outer glow for POP */
-            box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.9),
-                        0 0 20px 5px rgba(255, 193, 7, 0.4), /* Gold Glow */
-                        inset 0 0 0 1px rgba(255, 255, 255, 0.15); /* Brighter inner shine on hover */
+            /* Enhanced shadow with a gold outer glow for POP / Flowing Cycle Look */
+            box-shadow: 
+                0 10px 40px -5px rgba(0, 0, 0, 0.9), /* Dark lift shadow */
+                0 0 30px 5px rgba(255, 193, 7, 0.6), /* Stronger Gold Glow */
+                0 0 60px 10px rgba(255, 193, 7, 0.2), /* Wider Gold Bloom */
+                inset 0 0 0 1px rgba(255, 255, 255, 0.15); /* Brighter inner shine on hover */
         }
 
         /* Enhanced border effect for cards - glowing top edge */
@@ -89,13 +140,6 @@
         .shiny-card:hover::before {
             transform: translateY(0%); /* Slide into view on hover */
         }
-        
-        /* Fix for Process Card Text Alignment (Issue based on screen size/content length) */
-        .process-card-content {
-            text-align: left; /* Defaulting to left for better professional feel on long text */
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
-        }
 
         /* Custom animation class for scroll reveal (Fade-in-Up effect) */
         .scroll-reveal {
@@ -106,6 +150,23 @@
         .scroll-reveal.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Style for the integrated step numbers */
+        .process-step-indicator {
+            display: inline-flex; /* Use flex to center text vertically and horizontally */
+            align-items: center;
+            justify-content: center;
+            width: 40px; /* Smaller, more integrated circle */
+            height: 40px;
+            background-color: #142a42; /* mechanical-blue */
+            color: #ffc107; /* cta-gold */
+            border-radius: 9999px; /* full-rounded */
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* subtle shadow */
+            margin-bottom: 0.75rem; /* mb-3 */
+            border: 2px solid #ffc107; /* Gold ring */
         }
     </style>
     <script>
@@ -173,13 +234,13 @@
 
     <!-- Hero Section --><section class="py-20 sm:py-32 border-b border-gray-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 leading-tight text-metallic-silver scroll-reveal">
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 leading-tight text-metallic-silver hero-reveal delay-1">
                 Scale Your <span class="text-cta-gold">E-commerce Revenue</span> with Precision Advertising
             </h1>
-            <p class="text-xl sm:text-2xl text-metallic-silver opacity-80 max-w-3xl mx-auto mb-10 scroll-reveal" style="transition-delay: 0.1s;">
+            <p class="text-xl sm:text-2xl text-metallic-silver opacity-80 max-w-3xl mx-auto mb-10 hero-reveal delay-2">
                 Hawkesworth LLC delivers high-performing, data-driven ad strategies across all major platforms to maximize your Return on Ad Spend (ROAS).
             </p>
-            <a href="#contact" class="inline-flex items-center justify-center px-10 py-4 border-2 border-cta-gold text-base font-bold rounded-xl shadow-2xl bg-cta-gold text-dark-background hover:bg-yellow-500 transition duration-300 transform hover:scale-[1.03] shiny-card scroll-reveal" style="transition-delay: 0.2s;">
+            <a href="#contact" class="inline-flex items-center justify-center px-10 py-4 border-2 border-cta-gold text-base font-bold rounded-xl shadow-2xl bg-cta-gold text-dark-background hover:bg-yellow-500 transition duration-300 transform hover:scale-[1.03] shiny-card hero-reveal delay-3">
                 Get a Free Audit Today
                 <span data-lucide="arrow-right" class="ml-2 w-5 h-5"></span>
             </a>
@@ -281,35 +342,41 @@
                 </div>
 
                 <!-- Step 1: Strategy --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.1s;">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-mechanical-blue text-metallic-silver rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold shadow-lg ring-2 ring-cta-gold">1</div>
-                    <div class="pt-6 text-center process-card-content">
-                        <span data-lucide="compass" class="w-8 h-8 text-cta-gold mx-auto mb-3"></span>
-                        <h3 class="text-xl font-bold text-metallic-silver mb-2">Discovery & Strategy</h3>
-                        <p class="text-metallic-silver opacity-80">
-                            Comprehensive account audit, competitor analysis, and market segmentation to define high-ROAS target audiences.
-                        </p>
+                    <div class="pt-6 text-center">
+                        <div class="max-w-xs mx-auto">
+                            <!-- Integrated Step Number --><div class="process-step-indicator mx-auto">1</div>
+                            <span data-lucide="compass" class="w-8 h-8 text-cta-gold mx-auto mb-3 block"></span>
+                            <h3 class="text-xl font-bold text-metallic-silver mb-2">Discovery & Strategy</h3>
+                            <p class="text-metallic-silver opacity-80">
+                                Comprehensive account audit, competitor analysis, and market segmentation to define high-ROAS target audiences.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Step 2: Execution --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.2s;">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-mechanical-blue text-metallic-silver rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold shadow-lg ring-2 ring-cta-gold">2</div>
-                    <div class="pt-6 text-center process-card-content">
-                        <span data-lucide="zap" class="w-8 h-8 text-cta-gold mx-auto mb-3"></span>
-                        <h3 class="text-xl font-bold text-metallic-silver mb-2">Campaign Launch & Scale</h3>
-                        <p class="text-metallic-silver opacity-80">
-                            Building optimized campaigns, A/B testing creative and copy, and implementing advanced bidding algorithms.
-                        </p>
+                    <div class="pt-6 text-center">
+                        <div class="max-w-xs mx-auto">
+                            <!-- Integrated Step Number --><div class="process-step-indicator mx-auto">2</div>
+                            <span data-lucide="zap" class="w-8 h-8 text-cta-gold mx-auto mb-3 block"></span>
+                            <h3 class="text-xl font-bold text-metallic-silver mb-2">Campaign Launch & Scale</h3>
+                            <p class="text-metallic-silver opacity-80">
+                                Building optimized campaigns, A/B testing creative and copy, and implementing advanced bidding algorithms.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Step 3: Analysis --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.3s;">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-mechanical-blue text-metallic-silver rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold shadow-lg ring-2 ring-cta-gold">3</div>
-                    <div class="pt-6 text-center process-card-content">
-                        <span data-lucide="trending-up" class="w-8 h-8 text-cta-gold mx-auto mb-3"></span>
-                        <h3 class="text-xl font-bold text-metallic-silver mb-2">Reporting & Refinement</h3>
-                        <p class="text-metallic-silver opacity-80">
-                            Weekly reports, deep-dive analysis, and continuous budget reallocation to double down on winning strategies.
-                        </p>
+                    <div class="pt-6 text-center">
+                        <div class="max-w-xs mx-auto">
+                            <!-- Integrated Step Number --><div class="process-step-indicator mx-auto">3</div>
+                            <span data-lucide="trending-up" class="w-8 h-8 text-cta-gold mx-auto mb-3 block"></span>
+                            <h3 class="text-xl font-bold text-metallic-silver mb-2">Reporting & Refinement</h3>
+                            <p class="text-metallic-silver opacity-80">
+                                Weekly reports, deep-dive analysis, and continuous budget reallocation to double down on winning strategies.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
