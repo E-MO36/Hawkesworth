@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawkesworth LLC - E-commerce Ad Optimization (Sleek/Shiny)</title>
+    <!-- Load Google Fonts for a tech-savvy look --><link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons --><script type="module" src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        /* Set default font to Inter, and Oxanium for headings, for a tech-savvy look */
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, .font-extrabold, .font-bold, .font-semibold, .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-6xl {
+            font-family: 'Oxanium', monospace; /* More tech-savvy for prominent text */
+        }
+        /* Custom scroll behavior for smooth navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom CSS for the Sleek, Shiny Background */
+        .sleek-background {
+            background-color: #0f172a; /* Deep Slate Blue background */
+            /* Layered backgrounds: Logo, then existing radial gradients */
+            background-image: 
+                url('https://github.com/E-MO36/miles-for-mango/blob/main/HawkesworthNOBG.png?raw=true'),
+                radial-gradient(at 0% 0%, #1e3a8a 0%, transparent 60%),
+                radial-gradient(at 100% 100%, #172554 0%, transparent 50%);
+            background-size: 
+                cover,  /* For the logo image */
+                auto,   /* For radial-gradient 1 */
+                auto;   /* For radial-gradient 2 */
+            background-position: 
+                center, /* For the logo image */
+                0% 0%,  /* For radial-gradient 1 */
+                100% 100%; /* For radial-gradient 2 */
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Makes the shine and logo stationary */
+            position: relative; /* Needed for pseudo-element positioning */
+        }
+        .sleek-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Adjusted opacity for brighter logo */
+            background-color: rgba(15, 23, 42, 0.4); 
+            z-index: -1; /* Place behind content */
+        }
+        body {
+            position: relative; /* Ensure body content is above the pseudo-element */
+            z-index: 0;
+        }
+
+        /* Custom shadow for a polished, elevated look and border refinement */
+        .shiny-card {
+            position: relative;
+            overflow: hidden; /* Ensures the pseudo-element glow is contained */
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 
+                        0 4px 10px -2px rgba(0, 0, 0, 0.5),
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.08); /* Subtle inner shine */
+        }
+        .shiny-card:hover {
+            transform: translateY(-7px); /* More pronounced lift */
+            /* Enhanced shadow with a gold outer glow for POP */
+            box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.9),
+                        0 0 20px 5px rgba(255, 193, 7, 0.4), /* Gold Glow */
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.15); /* Brighter inner shine on hover */
+        }
+
+        /* Enhanced border effect for cards - glowing top edge */
+        .shiny-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px; /* Thickness of the glowing border */
+            background: linear-gradient(90deg, transparent, #ffc107, transparent);
+            transform: translateY(-100%); /* Start above the card */
+            transition: transform 0.4s ease-out;
+            z-index: 1;
+        }
+        .shiny-card:hover::before {
+            transform: translateY(0%); /* Slide into view on hover */
+        }
+        
+        /* Fix for Process Card Text Alignment (Issue based on screen size/content length) */
+        .process-card-content {
+            text-align: left; /* Defaulting to left for better professional feel on long text */
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        /* Custom animation class for scroll reveal (Fade-in-Up effect) */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mechanical-blue': '#142a42', /* Dark, deep header blue */
+                        'metallic-silver': '#f0f0f0', /* Bright, cool silver text for contrast */
+                        'cta-gold': '#ffc107', /* High-impact gold for CTAs */
+                        'dark-background': '#0f172a', /* Deepest background color */
+                        'card-blue': '#1e293b', /* Card background color (lighter than background) */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-metallic-silver sleek-background">
+
+    <!-- Navbar --><header class="sticky top-0 z-50 bg-mechanical-blue shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center justify-between h-20">
+                <!-- Logo/Branding --><div class="flex-shrink-0">
+                    <a href="#" class="flex items-center space-x-2 text-xl font-extrabold text-metallic-silver hover:text-cta-gold transition duration-300">
+                        <!-- Custom Logo Image --><img src="https://github.com/E-MO36/miles-for-mango/blob/main/HawkesworthLLC.png?raw=true" 
+                             alt="Hawkesworth LLC Logo" 
+                             class="w-8 h-8 rounded-full border border-cta-gold"
+                             onerror="this.onerror=null; this.src='https://placehold.co/32x32/142a42/ffc107?text=H';" >
+                        <span>Hawkesworth LLC</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Nav Links --><div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6 text-sm font-medium">
+                        <a href="#services" class="text-metallic-silver opacity-80 hover:text-cta-gold rounded-md transition duration-200">Services</a>
+                        <a href="#results" class="text-metallic-silver opacity-80 hover:text-cta-gold rounded-md transition duration-200">Results</a>
+                        <a href="#process" class="text-metallic-silver opacity-80 hover:text-cta-gold rounded-md transition duration-200">Our Process</a>
+                        <a href="#contact" class="px-5 py-2 text-dark-background bg-cta-gold hover:bg-yellow-500 rounded-lg shadow-xl transition duration-300 font-bold">Contact Us</a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button (Hamburger) --><div class="md:hidden">
+                    <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-metallic-silver hover:text-cta-gold hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cta-gold" aria-controls="mobile-menu" aria-expanded="false">
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) --><div class="md:hidden hidden bg-mechanical-blue shadow-xl" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#services" class="text-metallic-silver hover:bg-gray-700 hover:text-cta-gold block px-3 py-2 rounded-md text-base font-medium transition duration-200">Services</a>
+                <a href="#results" class="text-metallic-silver hover:bg-gray-700 hover:text-cta-gold block px-3 py-2 rounded-md text-base font-medium transition duration-200">Results</a>
+                <a href="#process" class="text-metallic-silver hover:bg-gray-700 hover:text-cta-gold block px-3 py-2 rounded-md text-base font-medium transition duration-200">Our Process</a>
+                <a href="#contact" class="text-dark-background bg-cta-gold hover:bg-yellow-500 block px-3 py-2 rounded-md text-base font-medium mt-2 transition duration-300 text-center">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section --><section class="py-20 sm:py-32 border-b border-gray-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 leading-tight text-metallic-silver scroll-reveal">
+                Scale Your <span class="text-cta-gold">E-commerce Revenue</span> with Precision Advertising
+            </h1>
+            <p class="text-xl sm:text-2xl text-metallic-silver opacity-80 max-w-3xl mx-auto mb-10 scroll-reveal" style="transition-delay: 0.1s;">
+                Hawkesworth LLC delivers high-performing, data-driven ad strategies across all major platforms to maximize your Return on Ad Spend (ROAS).
+            </p>
+            <a href="#contact" class="inline-flex items-center justify-center px-10 py-4 border-2 border-cta-gold text-base font-bold rounded-xl shadow-2xl bg-cta-gold text-dark-background hover:bg-yellow-500 transition duration-300 transform hover:scale-[1.03] shiny-card scroll-reveal" style="transition-delay: 0.2s;">
+                Get a Free Audit Today
+                <span data-lucide="arrow-right" class="ml-2 w-5 h-5"></span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section --><section id="services" class="py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Our E-commerce Advertising Specializations</h2>
+                <p class="text-lg text-metallic-silver opacity-80 max-w-3xl mx-auto">
+                    We manage the complexities of every major platform, ensuring your products are seen by high-intent customers, wherever they shop.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1: Amazon Ads & Optimization --><div class="bg-card-blue p-8 rounded-xl shiny-card scroll-reveal" style="transition-delay: 0.1s;">
+                    <span data-lucide="shopping-cart" class="w-10 h-10 text-cta-gold mb-4 block"></span>
+                    <h3 class="text-xl font-bold text-metallic-silver mb-3">Amazon Ads & Optimization</h3>
+                    <p class="text-metallic-silver opacity-80">
+                        Maximize visibility and profit on the world's largest marketplace. We specialize in Sponsored Products, Brands, and DSP campaigns.
+                    </p>
+                </div>
+
+                <!-- Service 2: Wayfair & Target Ads --><div class="bg-card-blue p-8 rounded-xl shiny-card scroll-reveal" style="transition-delay: 0.2s;">
+                    <span data-lucide="users" class="w-10 h-10 text-cta-gold mb-4 block"></span>
+                    <h3 class="text-xl font-bold text-metallic-silver mb-3">Wayfair & Target Ads</h3>
+                    <p class="text-metallic-silver opacity-80">
+                        Dominate specific retail categories with optimized campaigns and listings on key marketplace platforms beyond Amazon.
+                    </p>
+                </div>
+
+                <!-- Service 3: Listing & Content Strategy --><div class="bg-card-blue p-8 rounded-xl shiny-card scroll-reveal" style="transition-delay: 0.3s;">
+                    <span data-lucide="package" class="w-10 h-10 text-cta-gold mb-4 block"></span>
+                    <h3 class="text-xl font-bold text-metallic-silver mb-3">Listing & Content Strategy</h3>
+                    <p class="text-metallic-silver opacity-80">
+                        Complete A+ content creation, title/keyword optimization, and product page management to improve organic ranking and conversion rate.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Results/Testimonial Section --><section id="results" class="py-16 sm:py-24 bg-gray-900 border-t border-b border-gray-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Results That Speak for Themselves</h2>
+                <p class="text-lg text-metallic-silver opacity-80 max-w-3xl mx-auto">
+                    Our focus is strictly on profitable scale. Here’s a look at the impact we have on our clients' bottom lines.
+                </p>
+            </div>
+            
+            <!-- Key Metrics Grid --><div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+                <div class="text-center p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.1s;">
+                    <p class="text-4xl font-extrabold text-cta-gold mb-1">7.1x</p>
+                    <p class="text-sm font-semibold uppercase text-metallic-silver opacity-80">Average ROAS</p>
+                </div>
+                <div class="text-center p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.2s;">
+                    <p class="text-4xl font-extrabold text-cta-gold mb-1">110%</p>
+                    <p class="text-sm font-semibold uppercase text-metallic-silver opacity-80">YOY Revenue Growth</p>
+                </div>
+                <div class="text-center p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.3s;">
+                    <p class="text-4xl font-extrabold text-cta-gold mb-1">$20,366</p>
+                    <p class="text-sm font-semibold uppercase text-metallic-silver opacity-80">Total Revenue Generated</p>
+                </div>
+                <div class="text-center p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.4s;">
+                    <p class="text-4xl font-extrabold text-cta-gold mb-1">$2,881</p>
+                    <p class="text-sm font-semibold uppercase text-metallic-silver opacity-80">Total Ad Spend Managed</p>
+                </div>
+            </div>
+
+            <!-- Testimonial Card --><div class="bg-mechanical-blue p-8 sm:p-12 rounded-2xl shadow-2xl shiny-card scroll-reveal">
+                <blockquote class="max-w-4xl mx-auto text-center">
+                    <span data-lucide="quote" class="w-10 h-10 text-cta-gold mx-auto mb-4"></span>
+                    <p class="text-2xl italic font-medium text-metallic-silver mb-6">
+                        "Hawkesworth LLC completely transformed our Google Shopping campaign. We saw a 150% increase in qualified traffic and our ROAS climbed from 2.1x to 4.8x in just six months. They are true partners in growth."
+                    </p>
+                    <footer class="text-sm font-semibold text-metallic-silver opacity-80">
+                        — Sarah L., VP of E-commerce, <span class="font-bold text-metallic-silver">AquaTech Gear</span>
+                    </footer>
+                </blockquote>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Process Section --><section id="process" class="py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">The Hawkesworth Optimization Cycle</h2>
+                <p class="text-lg text-metallic-silver opacity-80 max-w-3xl mx-auto">
+                    A three-step process built on continuous improvement and transparent reporting.
+                </p>
+            </div>
+
+            <div class="relative flex flex-col md:flex-row justify-between space-y-12 md:space-y-0 md:space-x-12">
+                <!-- Vertical Divider Line (Desktop only) --><div class="hidden md:block absolute inset-0 flex items-center justify-center">
+                    <div class="w-full h-1 bg-gray-700/50"></div>
+                </div>
+
+                <!-- Step 1: Strategy --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.1s;">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-mechanical-blue text-metallic-silver rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold shadow-lg ring-2 ring-cta-gold">1</div>
+                    <div class="pt-6 text-center process-card-content">
+                        <span data-lucide="compass" class="w-8 h-8 text-cta-gold mx-auto mb-3"></span>
+                        <h3 class="text-xl font-bold text-metallic-silver mb-2">Discovery & Strategy</h3>
+                        <p class="text-metallic-silver opacity-80">
+                            Comprehensive account audit, competitor analysis, and market segmentation to define high-ROAS target audiences.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2: Execution --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-mechanical-blue text-metallic-silver rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold shadow-lg ring-2 ring-cta-gold">2</div>
+                    <div class="pt-6 text-center process-card-content">
+                        <span data-lucide="zap" class="w-8 h-8 text-cta-gold mx-auto mb-3"></span>
+                        <h3 class="text-xl font-bold text-metallic-silver mb-2">Campaign Launch & Scale</h3>
+                        <p class="text-metallic-silver opacity-80">
+                            Building optimized campaigns, A/B testing creative and copy, and implementing advanced bidding algorithms.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3: Analysis --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.3s;">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-mechanical-blue text-metallic-silver rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold shadow-lg ring-2 ring-cta-gold">3</div>
+                    <div class="pt-6 text-center process-card-content">
+                        <span data-lucide="trending-up" class="w-8 h-8 text-cta-gold mx-auto mb-3"></span>
+                        <h3 class="text-xl font-bold text-metallic-silver mb-2">Reporting & Refinement</h3>
+                        <p class="text-metallic-silver opacity-80">
+                            Weekly reports, deep-dive analysis, and continuous budget reallocation to double down on winning strategies.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section --><section id="contact" class="py-16 sm:py-24 bg-mechanical-blue border-t border-gray-700/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 scroll-reveal">
+                <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Ready to Outpace Your Competition?</h2>
+                <p class="text-xl text-metallic-silver opacity-80">
+                    Let's discuss how customized, performance-focused advertising can unlock your next level of growth.
+                </p>
+            </div>
+
+            <!-- Simple Contact Form (Frontend only) --><form class="bg-card-blue p-8 rounded-xl shadow-2xl space-y-4 shiny-card scroll-reveal" style="transition-delay: 0.1s;">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold">
+                    <input type="email" placeholder="Work Email" required class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold">
+                </div>
+                <input type="text" placeholder="Company Website / Store URL" class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold">
+                <textarea placeholder="Tell us about your current advertising challenges and goals..." rows="4" required class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold"></textarea>
+                <button type="submit" class="w-full px-4 py-3 font-bold text-lg text-dark-background bg-cta-gold rounded-xl hover:bg-yellow-500 transition duration-300 transform hover:scale-[1.01] shadow-xl">
+                    Request a Consultation
+                </button>
+                <p id="form-message" class="text-center text-sm pt-2 text-metallic-silver opacity-80 hidden">Thank you! We will be in touch shortly.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer --><footer class="bg-gray-900 text-metallic-silver py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand Info --><div>
+                    <a href="#" class="text-2xl font-extrabold text-metallic-silver mb-3 block">Hawkesworth LLC</a>
+                    <p class="text-sm opacity-80">E-commerce Advertising Optimization Agency.</p>
+                    <p class="text-sm mt-4 opacity-80">Elevating brands through data-led performance marketing.</p>
+                </div>
+                <!-- Quick Links --><div>
+                    <h4 class="text-lg font-semibold text-metallic-silver mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm opacity-80">
+                        <li><a href="#services" class="hover:text-cta-gold transition duration-200">Services</a></li>
+                        <li><a href="#results" class="hover:text-cta-gold transition duration-200">Case Studies</a></li>
+                        <li><a href="#process" class="hover:text-cta-gold transition duration-200">Our Approach</a></li>
+                    </ul>
+                </div>
+                <!-- Resources --><div>
+                    <h4 class="text-lg font-semibold text-metallic-silver mb-4">Platforms</h4>
+                    <ul class="space-y-2 text-sm opacity-80">
+                        <li>Google Ads</li>
+                        <li>Meta (Facebook/IG)</li>
+                        <li>Amazon Advertising</li>
+                        <li>TikTok</li>
+                    </ul>
+                </div>
+                <!-- Legal --><div>
+                    <h4 class="text-lg font-semibold text-metallic-silver mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm opacity-80">
+                        <li><a href="mailto:info@hawkesworth.com" class="hover:text-cta-gold transition duration-200">info@hawkesworth.com</a></li>
+                        <li><a href="#" class="hover:text-cta-gold transition duration-200">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-cta-gold transition duration-200">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700/50 mt-10 pt-6 text-center text-sm opacity-80">
+                &copy; <span id="current-year"></span> Hawkesworth LLC. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu and Year --><script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle Logic
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuLinks = mobileMenu.querySelectorAll('a');
+
+            const toggleMenu = () => {
+                const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+                menuBtn.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+            };
+
+            menuBtn.addEventListener('click', toggleMenu);
+
+            // Close menu when a link is clicked
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+
+            // Set Current Year in Footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Simple Form Submission Handler
+            const form = document.querySelector('#contact form');
+            const formMessage = document.getElementById('form-message');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // In a real application, this is where you'd send data to a backend server.
+                // For this example, we just clear the form and show a success message.
+                form.reset();
+                formMessage.classList.remove('hidden');
+
+                // Hide the message again after 5 seconds
+                setTimeout(() => {
+                    formMessage.classList.add('hidden');
+                }, 5000);
+            });
+            
+            // --- Intersection Observer Logic for Scroll Reveal ---
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            // Target all elements with the .scroll-reveal class
+            document.querySelectorAll('.scroll-reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+
+        // Initialize Lucide Icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
