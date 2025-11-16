@@ -3,92 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hawkesworth LLC - E-commerce Ad Optimization (Sleek/Shiny)</title>
-    <!-- Load Google Fonts for a tech-savvy look --><link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Hawkesworth LLC - E-commerce Ad Optimization (Professional Polish)</title>
+    <!-- Load Google Fonts: Inter for body, Oxanium for tech-savvy headings --><link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
     <!-- Load Lucide Icons --><script type="module" src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
-        /* Set default font to Inter, and Oxanium for headings, for a tech-savvy look */
+        /* Set default font to Inter, and Oxanium for headers */
         :root {
             font-family: 'Inter', sans-serif;
         }
         h1, h2, h3, h4, .font-extrabold, .font-bold, .font-semibold, .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-6xl {
-            font-family: 'Oxanium', monospace; /* More tech-savvy for prominent text */
+            font-family: 'Oxanium', monospace;
         }
-        /* Custom scroll behavior for smooth navigation */
         html {
             scroll-behavior: smooth;
         }
-        
-        /* Custom CSS for the Sleek, Shiny Background */
-        .sleek-background {
-            background-color: #0f172a; /* Deep Slate Blue background */
-            /* Layered backgrounds: Logo, then existing radial gradients */
-            background-image: 
-                url('https://github.com/E-MO36/miles-for-mango/blob/main/HawkesworthNOBG.png?raw=true'),
-                radial-gradient(at 0% 0%, #1e3a8a 0%, transparent 60%),
-                radial-gradient(at 100% 100%, #172554 0%, transparent 50%);
-            background-size: 
-                cover,  /* For the logo image */
-                auto,   /* For radial-gradient 1 */
-                auto;   /* For radial-gradient 2 */
-            background-position: 
-                center, /* For the logo image */
-                0% 0%,  /* For radial-gradient 1 */
-                100% 100%; /* For radial-gradient 2 */
+
+        /* Custom CSS for a clean, deep, professional dark background */
+        .professional-background {
+            background-color: #0f172a; /* Deep Slate Blue */
+            /* Subtle radial light source for depth - much cleaner than previous version */
+            background-image:
+                radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.15) 0%, transparent 70%),
+                radial-gradient(at 100% 100%, rgba(23, 37, 84, 0.15) 0%, transparent 60%);
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Makes the shine and logo stationary */
-            position: relative; /* Needed for pseudo-element positioning */
+            background-attachment: fixed;
         }
 
-        /* Pulsating glow for the background logo */
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 10px rgba(255, 193, 7, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(255, 193, 7, 0.7); }
-            100% { box-shadow: 0 0 10px rgba(255, 193, 7, 0.4); }
-        }
-
-        /* Digital Rain / Matrix Effect */
-        @keyframes digital-rain {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 100%; }
-        }
-
-        .sleek-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Adjusted opacity for brighter logo */
-            background-color: rgba(15, 23, 42, 0.4); 
-            z-index: -1; /* Place behind content */
-            animation: pulse-glow 4s infinite alternate ease-in-out; /* Apply pulsating glow to the whole background area */
-        }
-
-        .sleek-background::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0.01) 1px, /* Very subtle light dots/lines */
-                transparent 1px
-            );
-            background-size: 100% 10px; /* Controls density of "rain" */
-            animation: digital-rain 60s linear infinite; /* Slow, continuous fall */
-            opacity: 0.03; /* Very faint */
-            z-index: -2; /* Even further back than the pseudo-element with glow */
-        }
-
-
-        body {
-            position: relative; /* Ensure body content is above the pseudo-element */
-            z-index: 0;
+        /* Hero specific gradient for depth */
+        .hero-background {
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 1), rgba(0, 0, 0, 0.8));
         }
         
         /* --- Hero Entrance Animation (Corporate Look) --- */
@@ -104,41 +48,39 @@
         .hero-reveal.delay-2 { animation-delay: 0.3s; }
         .hero-reveal.delay-3 { animation-delay: 0.5s; }
 
-
-        /* Custom shadow for a polished, elevated look and border refinement */
-        .shiny-card {
+        /* Custom shadow for a polished, elevated look (Toned down and more metallic) */
+        .polished-card {
             position: relative;
-            overflow: hidden; /* Ensures the pseudo-element glow is contained */
+            overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 
-                        0 4px 10px -2px rgba(0, 0, 0, 0.5),
-                        inset 0 0 0 1px rgba(255, 255, 255, 0.08); /* Subtle inner shine */
+            /* Deeper shadow for professional lift, subtle white/metallic inner border for polish */
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7),
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
-        .shiny-card:hover {
-            transform: translateY(-7px); /* More pronounced lift */
-            /* Enhanced shadow with a gold outer glow for POP / Flowing Cycle Look */
-            box-shadow: 
-                0 10px 40px -5px rgba(0, 0, 0, 0.9), /* Dark lift shadow */
-                0 0 30px 5px rgba(255, 193, 7, 0.6), /* Stronger Gold Glow */
-                0 0 60px 10px rgba(255, 193, 7, 0.2), /* Wider Gold Bloom */
-                inset 0 0 0 1px rgba(255, 255, 255, 0.15); /* Brighter inner shine on hover */
+        .polished-card:hover {
+            transform: translateY(-5px);
+            /* Subtle outer glow (gold) for interaction, but not overwhelming */
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.9),
+                        0 0 15px 3px rgba(245, 184, 65, 0.4), /* Using new cta-gold */
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
         }
 
-        /* Enhanced border effect for cards - glowing top edge */
-        .shiny-card::before {
+        /* Enhanced border effect for cards - subtle gradient top edge */
+        .polished-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px; /* Thickness of the glowing border */
-            background: linear-gradient(90deg, transparent, #ffc107, transparent);
-            transform: translateY(-100%); /* Start above the card */
+            height: 3px; /* Slightly thinner */
+            background: linear-gradient(90deg, transparent, #F5B841, transparent); /* Using new cta-gold */
+            opacity: 0.7;
+            transform: translateY(-100%);
             transition: transform 0.4s ease-out;
             z-index: 1;
         }
-        .shiny-card:hover::before {
-            transform: translateY(0%); /* Slide into view on hover */
+        .polished-card:hover::before {
+            transform: translateY(0%);
         }
 
         /* Custom animation class for scroll reveal (Fade-in-Up effect) */
@@ -152,21 +94,47 @@
             transform: translateY(0);
         }
 
-        /* Style for the integrated step numbers */
+        /* Style for the integrated process numbers (less circular, more blocky/integrated) */
         .process-step-indicator {
-            display: inline-flex; /* Use flex to center text vertically and horizontally */
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px; /* Smaller, more integrated circle */
-            height: 40px;
-            background-color: #142a42; /* mechanical-blue */
-            color: #ffc107; /* cta-gold */
-            border-radius: 9999px; /* full-rounded */
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 700; /* font-bold */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* subtle shadow */
-            margin-bottom: 0.75rem; /* mb-3 */
-            border: 2px solid #ffc107; /* Gold ring */
+            width: 36px;
+            height: 36px;
+            background-color: #F5B841; /* Gold fill */
+            color: #0f172a; /* Dark text */
+            border-radius: 8px; /* Slightly rounded block */
+            font-size: 1.1rem;
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            margin-bottom: 0.75rem;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+        }
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            transform: scale(0.9);
+            transition: transform 0.3s ease-out;
+        }
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
         }
     </style>
     <script>
@@ -174,43 +142,44 @@
             theme: {
                 extend: {
                     colors: {
-                        'mechanical-blue': '#142a42', /* Dark, deep header blue */
-                        'metallic-silver': '#f0f0f0', /* Bright, cool silver text for contrast */
-                        'cta-gold': '#ffc107', /* High-impact gold for CTAs */
+                        'mechanical-blue': '#1e293b', /* Dark, primary header/card border blue */
+                        'metallic-silver': '#e2e8f0', /* Main body text color */
+                        'cta-gold': '#F5B841', /* Richer, warmer gold for CTAs/accents */
                         'dark-background': '#0f172a', /* Deepest background color */
-                        'card-blue': '#1e293b', /* Card background color (lighter than background) */
+                        'card-blue': '#1e293b', /* Card background color */
+                        'subtext-gray': '#A0A0A0', /* New neutral gray for secondary text */
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="text-metallic-silver sleek-background">
+<body class="text-metallic-silver professional-background">
 
-    <!-- Navbar --><header class="sticky top-0 z-50 bg-mechanical-blue shadow-2xl">
+    <!-- Navbar --><header class="sticky top-0 z-50 bg-dark-background/95 backdrop-blur-sm shadow-2xl border-b border-mechanical-blue">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav class="flex items-center justify-between h-20">
                 <!-- Logo/Branding --><div class="flex-shrink-0">
                     <a href="#" class="flex items-center space-x-2 text-xl font-extrabold text-metallic-silver hover:text-cta-gold transition duration-300">
-                        <!-- Custom Logo Image --><img src="https://github.com/E-MO36/miles-for-mango/blob/main/HawkesworthLLC.png?raw=true" 
+                        <!-- Original Hawkesworth Logo --><img src="https://github.com/E-MO36/miles-for-mango/raw/main/HawkesworthLLC.png" 
                              alt="Hawkesworth LLC Logo" 
-                             class="w-8 h-8 rounded-full border border-cta-gold"
-                             onerror="this.onerror=null; this.src='https://placehold.co/32x32/142a42/ffc107?text=H';" >
-                        <span>Hawkesworth LLC</span>
+                             class="w-8 h-8 rounded-full border-2 border-cta-gold shadow-lg"
+                             onerror="this.onerror=null; this.src='https://placehold.co/32x32/ffc107/0f172a?text=H';">
+                        <span>HAWKESWORTH LLC</span>
                     </a>
                 </div>
 
                 <!-- Desktop Nav Links --><div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-6 text-sm font-medium">
-                        <a href="#services" class="text-metallic-silver opacity-80 hover:text-cta-gold rounded-md transition duration-200">Services</a>
-                        <a href="#results" class="text-metallic-silver opacity-80 hover:text-cta-gold rounded-md transition duration-200">Results</a>
-                        <a href="#process" class="text-metallic-silver opacity-80 hover:text-cta-gold rounded-md transition duration-200">Our Process</a>
-                        <a href="#contact" class="px-5 py-2 text-dark-background bg-cta-gold hover:bg-yellow-500 rounded-lg shadow-xl transition duration-300 font-bold">Contact Us</a>
+                        <a href="#services" class="text-metallic-silver opacity-80 hover:text-cta-gold transition duration-200">Services</a>
+                        <a href="#results" class="text-metallic-silver opacity-80 hover:text-cta-gold transition duration-200">Impact</a>
+                        <a href="#process" class="text-metallic-silver opacity-80 hover:text-cta-gold transition duration-200">Methodology</a>
+                        <!-- CTA button style enhanced for polish --><button id="desktop-cta-nav" class="px-5 py-2 text-dark-background bg-cta-gold hover:bg-yellow-500 rounded-lg shadow-xl transition duration-300 font-bold transform hover:scale-105">Request Audit</button>
                     </div>
                 </div>
 
                 <!-- Mobile Menu Button (Hamburger) --><div class="md:hidden">
-                    <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-metallic-silver hover:text-cta-gold hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cta-gold" aria-controls="mobile-menu" aria-expanded="false">
+                    <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-metallic-silver hover:text-cta-gold hover:bg-mechanical-blue focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cta-gold" aria-controls="mobile-menu" aria-expanded="false">
                         <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -222,235 +191,321 @@
             </nav>
         </div>
 
-        <!-- Mobile Menu (Hidden by default) --><div class="md:hidden hidden bg-mechanical-blue shadow-xl" id="mobile-menu">
+        <!-- Mobile Menu (Hidden by default) --><div class="md:hidden hidden bg-dark-background shadow-xl" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#services" class="text-metallic-silver hover:bg-gray-700 hover:text-cta-gold block px-3 py-2 rounded-md text-base font-medium transition duration-200">Services</a>
-                <a href="#results" class="text-metallic-silver hover:bg-gray-700 hover:text-cta-gold block px-3 py-2 rounded-md text-base font-medium transition duration-200">Results</a>
-                <a href="#process" class="text-metallic-silver hover:bg-gray-700 hover:text-cta-gold block px-3 py-2 rounded-md text-base font-medium transition duration-200">Our Process</a>
-                <a href="#contact" class="text-dark-background bg-cta-gold hover:bg-yellow-500 block px-3 py-2 rounded-md text-base font-medium mt-2 transition duration-300 text-center">Contact Us</a>
+                <a href="#services" class="text-metallic-silver hover:bg-mechanical-blue hover:text-cta-gold block px-3 py-2 rounded-md text-base font-medium transition duration-200">Services</a>
+                <a href="#results" class="text-metallic-silver hover:bg-mechanical-blue hover:text-cta-gold block px-3 py-2 rounded-md text-base font-medium transition duration-200">Impact</a>
+                <a href="#process" class="text-metallic-silver hover:bg-mechanical-blue hover:text-cta-gold block px-3 py-2 rounded-md text-base font-medium transition duration-200">Methodology</a>
+                <button id="mobile-cta-nav" class="text-dark-background bg-cta-gold hover:bg-yellow-500 block w-full px-3 py-2 rounded-md text-base font-medium mt-2 transition duration-300 text-center">Request Audit</button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section --><section class="py-20 sm:py-32 border-b border-gray-700/50">
+    <!-- Hero Section --><section class="py-20 sm:py-32 border-b border-gray-700/50 hero-background">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 leading-tight text-metallic-silver hero-reveal delay-1">
-                Scale Your <span class="text-cta-gold">E-commerce Revenue</span> with Precision Advertising
-            </h1>
-            <p class="text-xl sm:text-2xl text-metallic-silver opacity-80 max-w-3xl mx-auto mb-10 hero-reveal delay-2">
-                Hawkesworth LLC delivers high-performing, data-driven ad strategies across all major platforms to maximize your Return on Ad Spend (ROAS).
+            <p class="text-sm font-semibold uppercase text-cta-gold mb-4 tracking-widest hero-reveal delay-1">
+                E-COMMERCE PERFORMANCE PARTNERS | OMNICHANNEL STRATEGY
             </p>
-            <a href="#contact" class="inline-flex items-center justify-center px-10 py-4 border-2 border-cta-gold text-base font-bold rounded-xl shadow-2xl bg-cta-gold text-dark-background hover:bg-yellow-500 transition duration-300 transform hover:scale-[1.03] shiny-card hero-reveal delay-3">
-                Get a Free Audit Today
-                <span data-lucide="arrow-right" class="ml-2 w-5 h-5"></span>
-            </a>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight text-metallic-silver hero-reveal delay-1">
+                Unlock <span class="text-cta-gold">Profitable Scale</span> with Data-Driven Advertising
+            </h1>
+            <p class="text-xl sm:text-2xl text-subtext-gray max-w-4xl mx-auto mb-10 hero-reveal delay-2">
+                Hawkesworth LLC partners with you to decode the data and optimize every stage of the digital journey, delivering consistent, exponential Return on Ad Spend (ROAS).
+            </p>
+            <button id="hero-cta" class="inline-flex items-center justify-center px-10 py-4 border-2 border-cta-gold text-base font-bold rounded-xl shadow-2xl bg-cta-gold text-dark-background hover:bg-yellow-500 transition duration-300 transform hover:scale-[1.03] polished-card hero-reveal delay-3">
+                Start Scaling Now
+                <span data-lucide="chevrons-right" class="ml-2 w-5 h-5"></span>
+            </button>
         </div>
     </section>
 
     <!-- Services Section --><section id="services" class="py-16 sm:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-reveal">
-                <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Our E-commerce Advertising Specializations</h2>
-                <p class="text-lg text-metallic-silver opacity-80 max-w-3xl mx-auto">
-                    We manage the complexities of every major platform, ensuring your products are seen by high-intent customers, wherever they shop.
+                <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Core E-commerce Advertising Solutions</h2>
+                <p class="text-lg text-subtext-gray max-w-3xl mx-auto">
+                    We manage the complexities of every major platform, ensuring your products are seen by high-intent customers.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Service 1: Amazon Ads & Optimization --><div class="bg-card-blue p-8 rounded-xl shiny-card scroll-reveal" style="transition-delay: 0.1s;">
-                    <span data-lucide="shopping-cart" class="w-10 h-10 text-cta-gold mb-4 block"></span>
-                    <h3 class="text-xl font-bold text-metallic-silver mb-3">Amazon Ads & Optimization</h3>
-                    <p class="text-metallic-silver opacity-80">
-                        Maximize visibility and profit on the world's largest marketplace. We specialize in Sponsored Products, Brands, and DSP campaigns.
+                <!-- Service 1: Marketplace Focus (Amazon/Walmart) --><div class="bg-card-blue p-8 rounded-xl polished-card scroll-reveal" style="transition-delay: 0.1s;">
+                    <span data-lucide="shopping-basket" class="w-10 h-10 text-cta-gold mb-4 block"></span>
+                    <h3 class="text-xl font-bold text-metallic-silver mb-3">Marketplace Strategy & Ad Ops</h3>
+                    <p class="text-subtext-gray">
+                        Expert management of Amazon Ads (Sponsored Products, Brands, DSP) and Walmart Connect. We build defense and offense campaigns for sustainable growth.
                     </p>
                 </div>
 
-                <!-- Service 2: Wayfair & Target Ads --><div class="bg-card-blue p-8 rounded-xl shiny-card scroll-reveal" style="transition-delay: 0.2s;">
-                    <span data-lucide="users" class="w-10 h-10 text-cta-gold mb-4 block"></span>
-                    <h3 class="text-xl font-bold text-metallic-silver mb-3">Wayfair & Target Ads</h3>
-                    <p class="text-metallic-silver opacity-80">
-                        Dominate specific retail categories with optimized campaigns and listings on key marketplace platforms beyond Amazon.
+                <!-- Service 2: Digital Channel Growth (Google/Meta) --><div class="bg-card-blue p-8 rounded-xl polished-card scroll-reveal" style="transition-delay: 0.2s;">
+                    <span data-lucide="git-fork" class="w-10 h-10 text-cta-gold mb-4 block"></span>
+                    <h3 class="text-xl font-bold text-metallic-silver mb-3">Cross-Channel Demand Generation</h3>
+                    <p class="text-subtext-gray">
+                        Maximize ROI from Google Shopping and Performance Max, coupled with Meta (Facebook/IG) for full-funnel customer acquisition and remarketing.
                     </p>
                 </div>
 
-                <!-- Service 3: Listing & Content Strategy --><div class="bg-card-blue p-8 rounded-xl shiny-card scroll-reveal" style="transition-delay: 0.3s;">
-                    <span data-lucide="package" class="w-10 h-10 text-cta-gold mb-4 block"></span>
-                    <h3 class="text-xl font-bold text-metallic-silver mb-3">Listing & Content Strategy</h3>
-                    <p class="text-metallic-silver opacity-80">
-                        Complete A+ content creation, title/keyword optimization, and product page management to improve organic ranking and conversion rate.
+                <!-- Service 3: Conversion Rate Optimization --><div class="bg-card-blue p-8 rounded-xl polished-card scroll-reveal" style="transition-delay: 0.3s;">
+                    <span data-lucide="layout-dashboard" class="w-10 h-10 text-cta-gold mb-4 block"></span>
+                    <h3 class="text-xl font-bold text-metallic-silver mb-3">Creative & Conversion Optimization</h3>
+                    <p class="text-subtext-gray">
+                        Data-backed listing optimization, A+ content creation, and landing page testing to ensure high ad spend conversion rates and lower Cost Per Acquisition.
                     </p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Results/Testimonial Section --><section id="results" class="py-16 sm:py-24 bg-gray-900 border-t border-b border-gray-700/50">
+    <!-- Impact Section (Metrics + Testimonials) --><section id="results" class="py-16 sm:py-24 bg-card-blue border-t border-b border-gray-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-reveal">
-                <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Results That Speak for Themselves</h2>
-                <p class="text-lg text-metallic-silver opacity-80 max-w-3xl mx-auto">
-                    Our focus is strictly on profitable scale. Here’s a look at the impact we have on our clients' bottom lines.
+                <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Proven Impact: Data-Driven Efficiency & Growth</h2>
+                <p class="text-lg text-subtext-gray max-w-3xl mx-auto">
+                    We specialize in delivering high-efficiency, profitable results for scaling e-commerce brands, ensuring every dollar spent works harder.
                 </p>
             </div>
             
-            <!-- Key Metrics Grid --><div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-                <div class="text-center p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.1s;">
+            <!-- Key Metrics Grid (Client's Actual Numbers - Focus on Efficiency) --><div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+                <div class="text-center p-6 bg-dark-background rounded-xl shadow-xl polished-card scroll-reveal" style="transition-delay: 0.1s;">
                     <p class="text-4xl font-extrabold text-cta-gold mb-1">7.1x</p>
-                    <p class="text-sm font-semibold uppercase text-metallic-silver opacity-80">Average ROAS</p>
+                    <p class="text-sm font-semibold uppercase text-subtext-gray">Max ROAS Achieved</p>
                 </div>
-                <div class="text-center p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.2s;">
+                <div class="text-center p-6 bg-dark-background rounded-xl shadow-xl polished-card scroll-reveal" style="transition-delay: 0.2s;">
                     <p class="text-4xl font-extrabold text-cta-gold mb-1">110%</p>
-                    <p class="text-sm font-semibold uppercase text-metallic-silver opacity-80">YOY Revenue Growth</p>
+                    <p class="text-sm font-semibold uppercase text-subtext-gray">YOY Revenue Growth</p>
                 </div>
-                <div class="text-center p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.3s;">
+                <div class="text-center p-6 bg-dark-background rounded-xl shadow-xl polished-card scroll-reveal" style="transition-delay: 0.3s;">
                     <p class="text-4xl font-extrabold text-cta-gold mb-1">$20,366</p>
-                    <p class="text-sm font-semibold uppercase text-metallic-silver opacity-80">Total Revenue Generated</p>
+                    <p class="text-sm font-semibold uppercase text-subtext-gray">Total Revenue Generated</p>
                 </div>
-                <div class="text-center p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.4s;">
+                <div class="text-center p-6 bg-dark-background rounded-xl shadow-xl polished-card scroll-reveal" style="transition-delay: 0.4s;">
                     <p class="text-4xl font-extrabold text-cta-gold mb-1">$2,881</p>
-                    <p class="text-sm font-semibold uppercase text-metallic-silver opacity-80">Total Ad Spend Managed</p>
+                    <p class="text-sm font-semibold uppercase text-subtext-gray">Total Ad Spend Managed</p>
+                </div>
+            </div>
+            
+            <!-- Testimonials --><div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <!-- Testimonial 1 (Existing) --><div class="bg-dark-background p-8 rounded-xl shadow-2xl polished-card scroll-reveal">
+                    <blockquote class="text-center">
+                        <span data-lucide="quote" class="w-8 h-8 text-cta-gold mx-auto mb-4"></span>
+                        <p class="text-lg italic font-medium text-metallic-silver mb-4">
+                            "Hawkesworth LLC completely transformed our Google Shopping campaign. We saw a 150% increase in qualified traffic and our ROAS climbed from 2.1x to 4.8x in just six months."
+                        </p>
+                        <footer class="text-sm font-semibold text-subtext-gray">
+                            — Sarah L., VP of E-commerce, <span class="font-bold text-metallic-silver">AquaTech Gear</span>
+                        </footer>
+                    </blockquote>
+                </div>
+                 <!-- Testimonial 2 (New Mock) --><div class="bg-dark-background p-8 rounded-xl shadow-2xl polished-card scroll-reveal" style="transition-delay: 0.2s;">
+                    <blockquote class="text-center">
+                        <span data-lucide="quote" class="w-8 h-8 text-cta-gold mx-auto mb-4"></span>
+                        <p class="text-lg italic font-medium text-metallic-silver mb-4">
+                            "Their focus on Walmart Connect delivered results faster than we anticipated. Within the first quarter, our advertising ACOS dropped by 28% while revenue increased 65%."
+                        </p>
+                        <footer class="text-sm font-semibold text-subtext-gray">
+                            — Mark R., Founder, <span class="font-bold text-metallic-silver">Global Home Goods</span>
+                        </footer>
+                    </blockquote>
                 </div>
             </div>
 
-            <!-- Testimonial Card --><div class="bg-mechanical-blue p-8 sm:p-12 rounded-2xl shadow-2xl shiny-card scroll-reveal">
-                <blockquote class="max-w-4xl mx-auto text-center">
-                    <span data-lucide="quote" class="w-10 h-10 text-cta-gold mx-auto mb-4"></span>
-                    <p class="text-2xl italic font-medium text-metallic-silver mb-6">
-                        "Hawkesworth LLC completely transformed our Google Shopping campaign. We saw a 150% increase in qualified traffic and our ROAS climbed from 2.1x to 4.8x in just six months. They are true partners in growth."
-                    </p>
-                    <footer class="text-sm font-semibold text-metallic-silver opacity-80">
-                        — Sarah L., VP of E-commerce, <span class="font-bold text-metallic-silver">AquaTech Gear</span>
-                    </footer>
-                </blockquote>
+            <!-- Client Logos (Mock) --><div class="mt-8 text-center scroll-reveal">
+                <p class="text-sm font-semibold uppercase text-subtext-gray mb-6 opacity-80">Partnerships built for growth:</p>
+                <div class="flex flex-wrap justify-center items-center space-x-8 space-y-4">
+                    <img src="https://placehold.co/120x40/1e293b/F5B841?text=BRAND+A" alt="Brand A E-commerce Client Logo" class="h-8 filter brightness-75 hover:brightness-100 transition duration-300">
+                    <img src="https://placehold.co/120x40/1e293b/F5B841?text=BRAND+B" alt="Brand B E-commerce Client Logo" class="h-8 filter brightness-75 hover:brightness-100 transition duration-300">
+                    <img src="https://placehold.co/120x40/1e293b/F5B841?text=BRAND+C" alt="Brand C E-commerce Client Logo" class="h-8 filter brightness-75 hover:brightness-100 transition duration-300">
+                    <img src="https://placehold.co/120x40/1e293b/F5B841?text=BRAND+D" alt="Brand D E-commerce Client Logo" class="h-8 filter brightness-75 hover:brightness-100 transition duration-300">
+                </div>
             </div>
-
         </div>
     </section>
 
     <!-- Process Section --><section id="process" class="py-16 sm:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-reveal">
-                <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">The Hawkesworth Optimization Cycle</h2>
-                <p class="text-lg text-metallic-silver opacity-80 max-w-3xl mx-auto">
-                    A three-step process built on continuous improvement and transparent reporting.
+                <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Our Methodology: The Continuous Growth Cycle</h2>
+                <p class="text-lg text-subtext-gray max-w-3xl mx-auto">
+                    A robust, data-first operating cycle built for transparent, repeatable, and scalable success.
                 </p>
             </div>
 
             <div class="relative flex flex-col md:flex-row justify-between space-y-12 md:space-y-0 md:space-x-12">
-                <!-- Vertical Divider Line (Desktop only) --><div class="hidden md:block absolute inset-0 flex items-center justify-center">
+                <!-- Flow Line (Connects steps for desktop) --><div class="hidden md:block absolute inset-0 flex items-center justify-center">
                     <div class="w-full h-1 bg-gray-700/50"></div>
                 </div>
 
-                <!-- Step 1: Strategy --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.1s;">
-                    <div class="pt-6 text-center">
-                        <div class="max-w-xs mx-auto">
-                            <!-- Integrated Step Number --><div class="process-step-indicator mx-auto">1</div>
-                            <span data-lucide="compass" class="w-8 h-8 text-cta-gold mx-auto mb-3 block"></span>
-                            <h3 class="text-xl font-bold text-metallic-silver mb-2">Discovery & Strategy</h3>
-                            <p class="text-metallic-silver opacity-80">
-                                Comprehensive account audit, competitor analysis, and market segmentation to define high-ROAS target audiences.
-                            </p>
-                        </div>
-                    </div>
+                <!-- Step 1: Strategy --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl polished-card text-center scroll-reveal" style="transition-delay: 0.1s;">
+                    <div class="process-step-indicator mx-auto">1</div>
+                    <span data-lucide="search" class="w-8 h-8 text-metallic-silver mx-auto mb-3 block"></span>
+                    <h3 class="text-xl font-bold text-cta-gold mb-2">Audit & Strategize</h3>
+                    <p class="text-subtext-gray">
+                        Comprehensive account audit, competitor analysis, and market segmentation to define precise, high-ROAS campaign structures.
+                    </p>
                 </div>
 
-                <!-- Step 2: Execution --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.2s;">
-                    <div class="pt-6 text-center">
-                        <div class="max-w-xs mx-auto">
-                            <!-- Integrated Step Number --><div class="process-step-indicator mx-auto">2</div>
-                            <span data-lucide="zap" class="w-8 h-8 text-cta-gold mx-auto mb-3 block"></span>
-                            <h3 class="text-xl font-bold text-metallic-silver mb-2">Campaign Launch & Scale</h3>
-                            <p class="text-metallic-silver opacity-80">
-                                Building optimized campaigns, A/B testing creative and copy, and implementing advanced bidding algorithms.
-                            </p>
-                        </div>
-                    </div>
+                <!-- Step 2: Execution --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl polished-card text-center scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="process-step-indicator mx-auto">2</div>
+                    <span data-lucide="zap" class="w-8 h-8 text-metallic-silver mx-auto mb-3 block"></span>
+                    <h3 class="text-xl font-bold text-cta-gold mb-2">Launch & Optimize</h3>
+                    <p class="text-subtext-gray">
+                        A/B testing creative and copy, optimizing product feeds, and deploying advanced, platform-specific bidding algorithms for efficiency.
+                    </p>
                 </div>
 
-                <!-- Step 3: Analysis --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl shiny-card scroll-reveal" style="transition-delay: 0.3s;">
-                    <div class="pt-6 text-center">
-                        <div class="max-w-xs mx-auto">
-                            <!-- Integrated Step Number --><div class="process-step-indicator mx-auto">3</div>
-                            <span data-lucide="trending-up" class="w-8 h-8 text-cta-gold mx-auto mb-3 block"></span>
-                            <h3 class="text-xl font-bold text-metallic-silver mb-2">Reporting & Refinement</h3>
-                            <p class="text-metallic-silver opacity-80">
-                                Weekly reports, deep-dive analysis, and continuous budget reallocation to double down on winning strategies.
-                            </p>
-                        </div>
-                    </div>
+                <!-- Step 3: Analysis --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl polished-card text-center scroll-reveal" style="transition-delay: 0.3s;">
+                    <div class="process-step-indicator mx-auto">3</div>
+                    <span data-lucide="line-chart" class="w-8 h-8 text-metallic-silver mx-auto mb-3 block"></span>
+                    <h3 class="text-xl font-bold text-cta-gold mb-2">Analyze & Scale</h3>
+                    <p class="text-subtext-gray">
+                        Weekly transparent reports, deep-dive performance reviews, and continuous budget reallocation to lock in winning strategies and scale aggressively.
+                    </p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Contact CTA Section --><section id="contact" class="py-16 sm:py-24 bg-mechanical-blue border-t border-gray-700/50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10 scroll-reveal">
-                <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Ready to Outpace Your Competition?</h2>
-                <p class="text-xl text-metallic-silver opacity-80">
-                    Let's discuss how customized, performance-focused advertising can unlock your next level of growth.
-                </p>
-            </div>
-
-            <!-- Simple Contact Form (Frontend only) --><form class="bg-card-blue p-8 rounded-xl shadow-2xl space-y-4 shiny-card scroll-reveal" style="transition-delay: 0.1s;">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold">
-                    <input type="email" placeholder="Work Email" required class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold">
-                </div>
-                <input type="text" placeholder="Company Website / Store URL" class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold">
-                <textarea placeholder="Tell us about your current advertising challenges and goals..." rows="4" required class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold"></textarea>
-                <button type="submit" class="w-full px-4 py-3 font-bold text-lg text-dark-background bg-cta-gold rounded-xl hover:bg-yellow-500 transition duration-300 transform hover:scale-[1.01] shadow-xl">
-                    Request a Consultation
-                </button>
-                <p id="form-message" class="text-center text-sm pt-2 text-metallic-silver opacity-80 hidden">Thank you! We will be in touch shortly.</p>
-            </form>
+    <!-- Final CTA Banner (New Section) --><section class="py-16 bg-cta-gold text-dark-background text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 scroll-reveal">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Ready to Outpace the Competition?</h2>
+            <p class="text-xl opacity-90 mb-8">
+                Request your complimentary E-commerce Performance Audit today.
+            </p>
+            <button id="footer-cta" class="inline-flex items-center justify-center px-10 py-4 border-2 border-dark-background text-base font-bold rounded-xl shadow-2xl bg-dark-background text-cta-gold hover:bg-gray-800 transition duration-300 transform hover:scale-[1.05]">
+                Get Your Free Audit
+                <span data-lucide="rocket" class="ml-2 w-5 h-5"></span>
+            </button>
         </div>
     </section>
 
-    <!-- Footer --><footer class="bg-gray-900 text-metallic-silver py-10">
+    <!-- Footer --><footer class="bg-dark-background text-metallic-silver py-10 border-t border-gray-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Brand Info --><div>
-                    <a href="#" class="text-2xl font-extrabold text-metallic-silver mb-3 block">Hawkesworth LLC</a>
-                    <p class="text-sm opacity-80">E-commerce Advertising Optimization Agency.</p>
-                    <p class="text-sm mt-4 opacity-80">Elevating brands through data-led performance marketing.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Brand Info --><div class="col-span-2 md:col-span-1">
+                    <a href="#" class="text-2xl font-extrabold text-metallic-silver mb-3 block">HAWKESWORTH LLC</a>
+                    <p class="text-sm text-subtext-gray">Performance Marketing for E-commerce.</p>
+                    <p class="text-sm mt-4 text-subtext-gray">Elevating brands through data-led advertising since <span id="start-year">2018</span>.</p>
                 </div>
                 <!-- Quick Links --><div>
-                    <h4 class="text-lg font-semibold text-metallic-silver mb-4">Company</h4>
-                    <ul class="space-y-2 text-sm opacity-80">
-                        <li><a href="#services" class="hover:text-cta-gold transition duration-200">Services</a></li>
-                        <li><a href="#results" class="hover:text-cta-gold transition duration-200">Case Studies</a></li>
-                        <li><a href="#process" class="hover:text-cta-gold transition duration-200">Our Approach</a></li>
+                    <h4 class="text-lg font-semibold text-metallic-silver mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-subtext-gray">
+                        <li><a href="#services" class="hover:text-cta-gold transition duration-200">Our Services</a></li>
+                        <li><a href="#results" class="hover:text-cta-gold transition duration-200">Client Impact</a></li>
+                        <li><a href="#process" class="hover:text-cta-gold transition duration-200">Our Methodology</a></li>
                     </ul>
                 </div>
-                <!-- Resources --><div>
+                <!-- Platforms --><div>
                     <h4 class="text-lg font-semibold text-metallic-silver mb-4">Platforms</h4>
-                    <ul class="space-y-2 text-sm opacity-80">
-                        <li>Google Ads</li>
-                        <li>Meta (Facebook/IG)</li>
+                    <ul class="space-y-2 text-sm text-subtext-gray">
                         <li>Amazon Advertising</li>
-                        <li>TikTok</li>
+                        <li>Google Ads (PMax/Shopping)</li>
+                        <li>Meta (Facebook/IG)</li>
+                        <li>Walmart Connect</li>
                     </ul>
                 </div>
-                <!-- Legal --><div>
+                <!-- Contact (Simplified) --><div>
                     <h4 class="text-lg font-semibold text-metallic-silver mb-4">Connect</h4>
-                    <ul class="space-y-2 text-sm opacity-80">
+                    <ul class="space-y-2 text-sm text-subtext-gray">
                         <li><a href="mailto:info@hawkesworth.com" class="hover:text-cta-gold transition duration-200">info@hawkesworth.com</a></li>
                         <li><a href="#" class="hover:text-cta-gold transition duration-200">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-cta-gold transition duration-200">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-cta-gold transition duration-200">Careers</a></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-gray-700/50 mt-10 pt-6 text-center text-sm opacity-80">
+            <div class="border-t border-gray-700/50 mt-10 pt-6 text-center text-sm opacity-60">
                 &copy; <span id="current-year"></span> Hawkesworth LLC. All rights reserved.
             </div>
         </div>
     </footer>
+    
+    <!-- Contact Modal (Hidden Pop-up) --><div id="contact-modal" class="modal-overlay">
+        <div class="modal-content w-full max-w-lg mx-4">
+            <div class="bg-card-blue p-8 rounded-xl shadow-2xl polished-card relative">
+                <!-- Close Button --><button id="close-modal-btn" class="absolute top-4 right-4 text-metallic-silver hover:text-cta-gold transition duration-200 p-2 rounded-full bg-dark-background/50">
+                    <span data-lucide="x" class="w-6 h-6"></span>
+                </button>
 
-    <!-- JavaScript for Mobile Menu and Year --><script>
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-cta-gold mb-2">Request Your Free Audit</h2>
+                    <p class="text-subtext-gray">
+                        Let's analyze your current performance and map out your path to 7.1x ROAS.
+                    </p>
+                </div>
+
+                <!-- Contact Form --><form id="modal-form" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold">
+                        <input type="email" placeholder="Work Email" required class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold">
+                    </div>
+                    <input type="text" placeholder="Company Website / Store URL" class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold">
+                    <textarea placeholder="Tell us about your current advertising challenges and monthly ad spend..." rows="4" required class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold"></textarea>
+                    <button type="submit" class="w-full px-4 py-3 font-bold text-lg text-dark-background bg-cta-gold rounded-xl hover:bg-yellow-500 transition duration-300 transform hover:scale-[1.01] shadow-xl">
+                        Submit Audit Request
+                    </button>
+                    <p id="modal-form-message" class="text-center text-sm pt-2 text-green-400 font-semibold hidden">Success! We'll review your submission and contact you within one business day.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript for Mobile Menu, Year, Form, and Scroll Reveal --><script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Modal Logic ---
+            const modal = document.getElementById('contact-modal');
+            const form = document.getElementById('modal-form');
+            const formMessage = document.getElementById('modal-form-message');
+            const closeBtn = document.getElementById('close-modal-btn');
+            const ctas = [
+                document.getElementById('desktop-cta-nav'),
+                document.getElementById('mobile-cta-nav'),
+                document.getElementById('hero-cta'),
+                document.getElementById('footer-cta')
+            ];
+
+            const showModal = () => {
+                modal.classList.add('show');
+            };
+
+            const hideModal = () => {
+                modal.classList.remove('show');
+                // Reset form state on close
+                form.reset();
+                formMessage.classList.add('hidden');
+            };
+
+            // Event listeners for all CTAs
+            ctas.forEach(cta => {
+                if (cta) cta.addEventListener('click', showModal);
+            });
+            
+            closeBtn.addEventListener('click', hideModal);
+            
+            // Hide modal if user clicks outside of the content (on the overlay)
+            modal.addEventListener('click', (e) => {
+                if (e.target.id === 'contact-modal') {
+                    hideModal();
+                }
+            });
+
+            // Form submission handler
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Simulating a successful submission
+                form.reset();
+                formMessage.classList.remove('hidden');
+
+                // Auto-close modal after success message is shown
+                setTimeout(() => {
+                    hideModal();
+                }, 4000);
+            });
+
+
+            // --- General Page Logic ---
+
             // Mobile Menu Toggle Logic
             const menuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -473,27 +528,9 @@
                 });
             });
 
-
             // Set Current Year in Footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
 
-            // Simple Form Submission Handler
-            const form = document.querySelector('#contact form');
-            const formMessage = document.getElementById('form-message');
-
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                // In a real application, this is where you'd send data to a backend server.
-                // For this example, we just clear the form and show a success message.
-                form.reset();
-                formMessage.classList.remove('hidden');
-
-                // Hide the message again after 5 seconds
-                setTimeout(() => {
-                    formMessage.classList.add('hidden');
-                }, 5000);
-            });
-            
             // --- Intersection Observer Logic for Scroll Reveal ---
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach((entry) => {
