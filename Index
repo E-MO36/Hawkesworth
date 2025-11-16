@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hawkesworth LLC - E-commerce Ad Optimization (Professional Polish)</title>
-    <!-- Load Google Fonts: Inter for body, Oxanium for tech-savvy headings --><link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons --><script type="module" src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- Load Google Fonts: Inter only, for consistent typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script type="module" src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
-        /* Set default font to Inter, and Oxanium for headers */
+        /* Set default font to Inter for all elements, removing Oxanium headers */
         :root {
             font-family: 'Inter', sans-serif;
         }
-        h1, h2, h3, h4, .font-extrabold, .font-bold, .font-semibold, .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-6xl {
-            font-family: 'Oxanium', monospace;
-        }
+        /* Removed Oxanium-specific header declarations for a uniform look */
         html {
             scroll-behavior: smooth;
         }
@@ -22,7 +23,7 @@
         /* Custom CSS for a clean, deep, professional dark background */
         .professional-background {
             background-color: #0f172a; /* Deep Slate Blue */
-            /* Subtle radial light source for depth - much cleaner than previous version */
+            /* Subtle radial light source for depth */
             background-image:
                 radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.15) 0%, transparent 70%),
                 radial-gradient(at 100% 100%, rgba(23, 37, 84, 0.15) 0%, transparent 60%);
@@ -30,9 +31,20 @@
             background-attachment: fixed;
         }
 
-        /* Hero specific gradient for depth */
+        /* Hero specific gradient for depth and added subtle data wave pattern */
         .hero-background {
-            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 1), rgba(0, 0, 0, 0.8));
+            background-color: #0f172a; /* Base dark color */
+            /* Subtle data waves/lines pattern for a technical look */
+            background-image:
+                repeating-linear-gradient(
+                    -45deg,
+                    #1e293b 0px,
+                    #1e293b 1px,
+                    transparent 1px,
+                    transparent 40px
+                ),
+                linear-gradient(to bottom, rgba(15, 23, 42, 1), rgba(0, 0, 0, 0.8));
+            background-blend-mode: overlay, normal;
         }
         
         /* --- Hero Entrance Animation (Corporate Look) --- */
@@ -108,8 +120,58 @@
             font-weight: 800;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             margin-bottom: 0.75rem;
+            z-index: 10; /* Ensure number stays above line */
+        }
+        
+        /* Methodology Flow Line (Mobile: Vertical Timeline) */
+        @media (max-width: 767px) {
+            .process-step-container {
+                position: relative;
+                border-left: 2px solid #334155; /* Vertical line */
+                padding-left: 1.5rem;
+            }
+            .process-step-container > .process-step-indicator {
+                position: absolute;
+                left: -18px; /* Align to the vertical line */
+                top: 0;
+                margin-bottom: 0;
+            }
+            /* Add space between mobile steps */
+            .process-step-container:not(:last-child) {
+                margin-bottom: 3rem;
+            }
+        }
+        
+        /* New CSS for the continuous cycle loop visualization (Desktop only) */
+        .continuous-cycle-flow {
+            position: relative;
+            padding-bottom: 4rem; /* Add space for the loop line */
+        }
+        .continuous-cycle-flow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            width: 90%;
+            height: 40px; /* Curve height */
+            /* Draw a curve line */
+            border-bottom: 2px solid rgba(245, 184, 65, 0.4);
+            border-left: 2px solid rgba(245, 184, 65, 0.4);
+            border-right: 2px solid rgba(245, 184, 65, 0.4);
+            border-bottom-left-radius: 100%;
+            border-bottom-right-radius: 100%;
+            transform: translateY(100%); /* Push it slightly below the bottom edge */
+            opacity: 0.2;
+            pointer-events: none;
+            display: none; /* Hidden by default, will show on desktop */
         }
 
+        @media (min-width: 768px) {
+            .continuous-cycle-flow::after {
+                display: block; /* Show the loop on desktop */
+            }
+        }
+        
         /* Modal Styles */
         .modal-overlay {
             position: fixed;
@@ -156,12 +218,15 @@
 </head>
 <body class="text-metallic-silver professional-background">
 
-    <!-- Navbar --><header class="sticky top-0 z-50 bg-dark-background/95 backdrop-blur-sm shadow-2xl border-b border-mechanical-blue">
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-dark-background/95 backdrop-blur-sm shadow-2xl border-b border-mechanical-blue">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav class="flex items-center justify-between h-20">
-                <!-- Logo/Branding --><div class="flex-shrink-0">
+                <!-- Logo/Branding -->
+                <div class="flex-shrink-0">
                     <a href="#" class="flex items-center space-x-2 text-xl font-extrabold text-metallic-silver hover:text-cta-gold transition duration-300">
-                        <!-- Original Hawkesworth Logo --><img src="https://github.com/E-MO36/miles-for-mango/raw/main/HawkesworthLLC.png" 
+                        <!-- Original Hawkesworth Logo -->
+                        <img src="https://github.com/E-MO36/miles-for-mango/raw/main/HawkesworthLLC.png" 
                              alt="Hawkesworth LLC Logo" 
                              class="w-8 h-8 rounded-full border-2 border-cta-gold shadow-lg"
                              onerror="this.onerror=null; this.src='https://placehold.co/32x32/ffc107/0f172a?text=H';">
@@ -169,16 +234,19 @@
                     </a>
                 </div>
 
-                <!-- Desktop Nav Links --><div class="hidden md:block">
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-6 text-sm font-medium">
                         <a href="#services" class="text-metallic-silver opacity-80 hover:text-cta-gold transition duration-200">Services</a>
                         <a href="#results" class="text-metallic-silver opacity-80 hover:text-cta-gold transition duration-200">Impact</a>
                         <a href="#process" class="text-metallic-silver opacity-80 hover:text-cta-gold transition duration-200">Methodology</a>
-                        <!-- CTA button style enhanced for polish --><button id="desktop-cta-nav" class="px-5 py-2 text-dark-background bg-cta-gold hover:bg-yellow-500 rounded-lg shadow-xl transition duration-300 font-bold transform hover:scale-105">Request Audit</button>
+                        <!-- CTA button style enhanced for polish -->
+                        <button id="desktop-cta-nav" class="px-5 py-2 text-dark-background bg-cta-gold hover:bg-yellow-500 rounded-lg shadow-xl transition duration-300 font-bold transform hover:scale-105">Request Audit</button>
                     </div>
                 </div>
 
-                <!-- Mobile Menu Button (Hamburger) --><div class="md:hidden">
+                <!-- Mobile Menu Button (Hamburger) -->
+                <div class="md:hidden">
                     <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-metallic-silver hover:text-cta-gold hover:bg-mechanical-blue focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cta-gold" aria-controls="mobile-menu" aria-expanded="false">
                         <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -191,7 +259,8 @@
             </nav>
         </div>
 
-        <!-- Mobile Menu (Hidden by default) --><div class="md:hidden hidden bg-dark-background shadow-xl" id="mobile-menu">
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="md:hidden hidden bg-dark-background shadow-xl" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#services" class="text-metallic-silver hover:bg-mechanical-blue hover:text-cta-gold block px-3 py-2 rounded-md text-base font-medium transition duration-200">Services</a>
                 <a href="#results" class="text-metallic-silver hover:bg-mechanical-blue hover:text-cta-gold block px-3 py-2 rounded-md text-base font-medium transition duration-200">Impact</a>
@@ -201,7 +270,8 @@
         </div>
     </header>
 
-    <!-- Hero Section --><section class="py-20 sm:py-32 border-b border-gray-700/50 hero-background">
+    <!-- Hero Section -->
+    <section class="py-20 sm:py-32 border-b border-gray-700/50 hero-background">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-sm font-semibold uppercase text-cta-gold mb-4 tracking-widest hero-reveal delay-1">
                 E-COMMERCE PERFORMANCE PARTNERS | OMNICHANNEL STRATEGY
@@ -219,7 +289,8 @@
         </div>
     </section>
 
-    <!-- Services Section --><section id="services" class="py-16 sm:py-24">
+    <!-- Services Section -->
+    <section id="services" class="py-16 sm:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-reveal">
                 <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Core E-commerce Advertising Solutions</h2>
@@ -229,15 +300,19 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Service 1: Marketplace Focus (Amazon/Walmart) --><div class="bg-card-blue p-8 rounded-xl polished-card scroll-reveal" style="transition-delay: 0.1s;">
-                    <span data-lucide="shopping-basket" class="w-10 h-10 text-cta-gold mb-4 block"></span>
+                <!-- Service 1: Marketplace Focus (Amazon/Walmart) -->
+                <div class="bg-card-blue p-8 rounded-xl polished-card scroll-reveal" style="transition-delay: 0.1s;">
+                    <!-- Updated Icon: package for product/inventory flow across marketplaces -->
+                    <span data-lucide="package" class="w-10 h-10 text-cta-gold mb-4 block"></span>
                     <h3 class="text-xl font-bold text-metallic-silver mb-3">Marketplace Strategy & Ad Ops</h3>
                     <p class="text-subtext-gray">
                         Expert management of Amazon Ads (Sponsored Products, Brands, DSP) and Walmart Connect. We build defense and offense campaigns for sustainable growth.
                     </p>
                 </div>
 
-                <!-- Service 2: Digital Channel Growth (Google/Meta) --><div class="bg-card-blue p-8 rounded-xl polished-card scroll-reveal" style="transition-delay: 0.2s;">
+                <!-- Service 2: Digital Channel Growth (Google/Meta) -->
+                <div class="bg-card-blue p-8 rounded-xl polished-card scroll-reveal" style="transition-delay: 0.2s;">
+                    <!-- Original Icon: git-fork retained for cross-channel branching -->
                     <span data-lucide="git-fork" class="w-10 h-10 text-cta-gold mb-4 block"></span>
                     <h3 class="text-xl font-bold text-metallic-silver mb-3">Cross-Channel Demand Generation</h3>
                     <p class="text-subtext-gray">
@@ -245,8 +320,10 @@
                     </p>
                 </div>
 
-                <!-- Service 3: Conversion Rate Optimization --><div class="bg-card-blue p-8 rounded-xl polished-card scroll-reveal" style="transition-delay: 0.3s;">
-                    <span data-lucide="layout-dashboard" class="w-10 h-10 text-cta-gold mb-4 block"></span>
+                <!-- Service 3: Conversion Rate Optimization -->
+                <div class="bg-card-blue p-8 rounded-xl polished-card scroll-reveal" style="transition-delay: 0.3s;">
+                    <!-- Updated Icon: lightbulb for creative/optimization -->
+                    <span data-lucide="lightbulb" class="w-10 h-10 text-cta-gold mb-4 block"></span>
                     <h3 class="text-xl font-bold text-metallic-silver mb-3">Creative & Conversion Optimization</h3>
                     <p class="text-subtext-gray">
                         Data-backed listing optimization, A+ content creation, and landing page testing to ensure high ad spend conversion rates and lower Cost Per Acquisition.
@@ -256,7 +333,8 @@
         </div>
     </section>
     
-    <!-- Impact Section (Metrics + Testimonials) --><section id="results" class="py-16 sm:py-24 bg-card-blue border-t border-b border-gray-700/50">
+    <!-- Impact Section (Metrics + Testimonials) -->
+    <section id="results" class="py-16 sm:py-24 bg-card-blue border-t border-b border-gray-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-reveal">
                 <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Proven Impact: Data-Driven Efficiency & Growth</h2>
@@ -265,27 +343,34 @@
                 </p>
             </div>
             
-            <!-- Key Metrics Grid (Client's Actual Numbers - Focus on Efficiency) --><div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            <!-- Key Metrics Grid (Visualized with Icons) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
                 <div class="text-center p-6 bg-dark-background rounded-xl shadow-xl polished-card scroll-reveal" style="transition-delay: 0.1s;">
+                    <span data-lucide="trending-up" class="w-8 h-8 text-green-400 mx-auto mb-2 block"></span>
                     <p class="text-4xl font-extrabold text-cta-gold mb-1">7.1x</p>
                     <p class="text-sm font-semibold uppercase text-subtext-gray">Max ROAS Achieved</p>
                 </div>
                 <div class="text-center p-6 bg-dark-background rounded-xl shadow-xl polished-card scroll-reveal" style="transition-delay: 0.2s;">
+                    <span data-lucide="rocket" class="w-8 h-8 text-blue-400 mx-auto mb-2 block"></span>
                     <p class="text-4xl font-extrabold text-cta-gold mb-1">110%</p>
                     <p class="text-sm font-semibold uppercase text-subtext-gray">YOY Revenue Growth</p>
                 </div>
                 <div class="text-center p-6 bg-dark-background rounded-xl shadow-xl polished-card scroll-reveal" style="transition-delay: 0.3s;">
+                    <span data-lucide="banknote" class="w-8 h-8 text-yellow-400 mx-auto mb-2 block"></span>
                     <p class="text-4xl font-extrabold text-cta-gold mb-1">$20,366</p>
                     <p class="text-sm font-semibold uppercase text-subtext-gray">Total Revenue Generated</p>
                 </div>
                 <div class="text-center p-6 bg-dark-background rounded-xl shadow-xl polished-card scroll-reveal" style="transition-delay: 0.4s;">
+                    <span data-lucide="gauge" class="w-8 h-8 text-red-400 mx-auto mb-2 block"></span>
                     <p class="text-4xl font-extrabold text-cta-gold mb-1">$2,881</p>
                     <p class="text-sm font-semibold uppercase text-subtext-gray">Total Ad Spend Managed</p>
                 </div>
             </div>
             
-            <!-- Testimonials --><div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                <!-- Testimonial 1 (Existing) --><div class="bg-dark-background p-8 rounded-xl shadow-2xl polished-card scroll-reveal">
+            <!-- Testimonials -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <!-- Testimonial 1 (Existing) -->
+                <div class="bg-dark-background p-8 rounded-xl shadow-2xl polished-card scroll-reveal">
                     <blockquote class="text-center">
                         <span data-lucide="quote" class="w-8 h-8 text-cta-gold mx-auto mb-4"></span>
                         <p class="text-lg italic font-medium text-metallic-silver mb-4">
@@ -296,7 +381,8 @@
                         </footer>
                     </blockquote>
                 </div>
-                 <!-- Testimonial 2 (New Mock) --><div class="bg-dark-background p-8 rounded-xl shadow-2xl polished-card scroll-reveal" style="transition-delay: 0.2s;">
+                <!-- Testimonial 2 (New Mock) -->
+                <div class="bg-dark-background p-8 rounded-xl shadow-2xl polished-card scroll-reveal" style="transition-delay: 0.2s;">
                     <blockquote class="text-center">
                         <span data-lucide="quote" class="w-8 h-8 text-cta-gold mx-auto mb-4"></span>
                         <p class="text-lg italic font-medium text-metallic-silver mb-4">
@@ -309,19 +395,12 @@
                 </div>
             </div>
 
-            <!-- Client Logos (Mock) --><div class="mt-8 text-center scroll-reveal">
-                <p class="text-sm font-semibold uppercase text-subtext-gray mb-6 opacity-80">Partnerships built for growth:</p>
-                <div class="flex flex-wrap justify-center items-center space-x-8 space-y-4">
-                    <img src="https://placehold.co/120x40/1e293b/F5B841?text=BRAND+A" alt="Brand A E-commerce Client Logo" class="h-8 filter brightness-75 hover:brightness-100 transition duration-300">
-                    <img src="https://placehold.co/120x40/1e293b/F5B841?text=BRAND+B" alt="Brand B E-commerce Client Logo" class="h-8 filter brightness-75 hover:brightness-100 transition duration-300">
-                    <img src="https://placehold.co/120x40/1e293b/F5B841?text=BRAND+C" alt="Brand C E-commerce Client Logo" class="h-8 filter brightness-75 hover:brightness-100 transition duration-300">
-                    <img src="https://placehold.co/120x40/1e293b/F5B841?text=BRAND+D" alt="Brand D E-commerce Client Logo" class="h-8 filter brightness-75 hover:brightness-100 transition duration-300">
-                </div>
-            </div>
+            <!-- Client Logos (Mock) - REMOVED for cleaner presentation -->
         </div>
     </section>
 
-    <!-- Process Section --><section id="process" class="py-16 sm:py-24">
+    <!-- Process Section (Methodology Flowchart) -->
+    <section id="process" class="py-16 sm:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-reveal">
                 <h2 class="text-3xl sm:text-4xl font-bold text-metallic-silver mb-4">Our Methodology: The Continuous Growth Cycle</h2>
@@ -330,12 +409,23 @@
                 </p>
             </div>
 
-            <div class="relative flex flex-col md:flex-row justify-between space-y-12 md:space-y-0 md:space-x-12">
-                <!-- Flow Line (Connects steps for desktop) --><div class="hidden md:block absolute inset-0 flex items-center justify-center">
-                    <div class="w-full h-1 bg-gray-700/50"></div>
+            <div class="relative flex flex-col md:flex-row justify-between space-y-12 md:space-y-0 md:space-x-12 continuous-cycle-flow">
+                <!-- Flow Line with Arrows (Desktop Only) -->
+                <div class="hidden md:block absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                    <div class="w-11/12 h-1 bg-gray-700/50 relative">
+                        <!-- Arrow 1 (Audit -> Launch) -->
+                        <div class="absolute -top-3 left-1/3 transform -translate-x-1/2 text-cta-gold">
+                            <span data-lucide="chevron-right" class="w-6 h-6 transform scale-150"></span>
+                        </div>
+                        <!-- Arrow 2 (Launch -> Analyze) -->
+                        <div class="absolute -top-3 right-1/3 transform translate-x-1/2 text-cta-gold">
+                            <span data-lucide="chevron-right" class="w-6 h-6 transform scale-150"></span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Step 1: Strategy --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl polished-card text-center scroll-reveal" style="transition-delay: 0.1s;">
+                <!-- Step 1: Audit & Strategize -->
+                <div class="relative flex-1 p-8 bg-card-blue rounded-xl shadow-xl polished-card text-center scroll-reveal z-10 process-step-container" style="transition-delay: 0.1s;">
                     <div class="process-step-indicator mx-auto">1</div>
                     <span data-lucide="search" class="w-8 h-8 text-metallic-silver mx-auto mb-3 block"></span>
                     <h3 class="text-xl font-bold text-cta-gold mb-2">Audit & Strategize</h3>
@@ -344,7 +434,8 @@
                     </p>
                 </div>
 
-                <!-- Step 2: Execution --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl polished-card text-center scroll-reveal" style="transition-delay: 0.2s;">
+                <!-- Step 2: Launch & Optimize -->
+                <div class="relative flex-1 p-8 bg-card-blue rounded-xl shadow-xl polished-card text-center scroll-reveal z-10 process-step-container" style="transition-delay: 0.2s;">
                     <div class="process-step-indicator mx-auto">2</div>
                     <span data-lucide="zap" class="w-8 h-8 text-metallic-silver mx-auto mb-3 block"></span>
                     <h3 class="text-xl font-bold text-cta-gold mb-2">Launch & Optimize</h3>
@@ -353,7 +444,8 @@
                     </p>
                 </div>
 
-                <!-- Step 3: Analysis --><div class="relative flex-1 p-6 bg-card-blue rounded-xl shadow-xl polished-card text-center scroll-reveal" style="transition-delay: 0.3s;">
+                <!-- Step 3: Analyze & Scale -->
+                <div class="relative flex-1 p-8 bg-card-blue rounded-xl shadow-xl polished-card text-center scroll-reveal z-10 process-step-container" style="transition-delay: 0.3s;">
                     <div class="process-step-indicator mx-auto">3</div>
                     <span data-lucide="line-chart" class="w-8 h-8 text-metallic-silver mx-auto mb-3 block"></span>
                     <h3 class="text-xl font-bold text-cta-gold mb-2">Analyze & Scale</h3>
@@ -361,12 +453,12 @@
                         Weekly transparent reports, deep-dive performance reviews, and continuous budget reallocation to lock in winning strategies and scale aggressively.
                     </p>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Final CTA Banner (New Section) --><section class="py-16 bg-cta-gold text-dark-background text-center">
+    <!-- Final CTA Banner (New Section) -->
+    <section class="py-16 bg-cta-gold text-dark-background text-center">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 scroll-reveal">
             <h2 class="text-3xl sm:text-4xl font-bold mb-4">Ready to Outpace the Competition?</h2>
             <p class="text-xl opacity-90 mb-8">
@@ -379,15 +471,18 @@
         </div>
     </section>
 
-    <!-- Footer --><footer class="bg-dark-background text-metallic-silver py-10 border-t border-gray-700/50">
+    <!-- Footer -->
+    <footer class="bg-dark-background text-metallic-silver py-10 border-t border-gray-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <!-- Brand Info --><div class="col-span-2 md:col-span-1">
+                <!-- Brand Info -->
+                <div class="col-span-2 md:col-span-1">
                     <a href="#" class="text-2xl font-extrabold text-metallic-silver mb-3 block">HAWKESWORTH LLC</a>
                     <p class="text-sm text-subtext-gray">Performance Marketing for E-commerce.</p>
                     <p class="text-sm mt-4 text-subtext-gray">Elevating brands through data-led advertising since <span id="start-year">2018</span>.</p>
                 </div>
-                <!-- Quick Links --><div>
+                <!-- Quick Links -->
+                <div>
                     <h4 class="text-lg font-semibold text-metallic-silver mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm text-subtext-gray">
                         <li><a href="#services" class="hover:text-cta-gold transition duration-200">Our Services</a></li>
@@ -395,7 +490,8 @@
                         <li><a href="#process" class="hover:text-cta-gold transition duration-200">Our Methodology</a></li>
                     </ul>
                 </div>
-                <!-- Platforms --><div>
+                <!-- Platforms -->
+                <div>
                     <h4 class="text-lg font-semibold text-metallic-silver mb-4">Platforms</h4>
                     <ul class="space-y-2 text-sm text-subtext-gray">
                         <li>Amazon Advertising</li>
@@ -404,7 +500,8 @@
                         <li>Walmart Connect</li>
                     </ul>
                 </div>
-                <!-- Contact (Simplified) --><div>
+                <!-- Contact (Simplified) -->
+                <div>
                     <h4 class="text-lg font-semibold text-metallic-silver mb-4">Connect</h4>
                     <ul class="space-y-2 text-sm text-subtext-gray">
                         <li><a href="mailto:info@hawkesworth.com" class="hover:text-cta-gold transition duration-200">info@hawkesworth.com</a></li>
@@ -420,10 +517,12 @@
         </div>
     </footer>
     
-    <!-- Contact Modal (Hidden Pop-up) --><div id="contact-modal" class="modal-overlay">
+    <!-- Contact Modal (Hidden Pop-up) -->
+    <div id="contact-modal" class="modal-overlay">
         <div class="modal-content w-full max-w-lg mx-4">
             <div class="bg-card-blue p-8 rounded-xl shadow-2xl polished-card relative">
-                <!-- Close Button --><button id="close-modal-btn" class="absolute top-4 right-4 text-metallic-silver hover:text-cta-gold transition duration-200 p-2 rounded-full bg-dark-background/50">
+                <!-- Close Button -->
+                <button id="close-modal-btn" class="absolute top-4 right-4 text-metallic-silver hover:text-cta-gold transition duration-200 p-2 rounded-full bg-dark-background/50">
                     <span data-lucide="x" class="w-6 h-6"></span>
                 </button>
 
@@ -434,7 +533,8 @@
                     </p>
                 </div>
 
-                <!-- Contact Form --><form id="modal-form" class="space-y-4">
+                <!-- Contact Form -->
+                <form id="modal-form" class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold">
                         <input type="email" placeholder="Work Email" required class="w-full px-4 py-3 border border-gray-700 rounded-lg bg-dark-background text-metallic-silver focus:ring-cta-gold focus:border-cta-gold">
@@ -451,7 +551,8 @@
     </div>
 
 
-    <!-- JavaScript for Mobile Menu, Year, Form, and Scroll Reveal --><script>
+    <!-- JavaScript for Mobile Menu, Year, Form, and Scroll Reveal -->
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Modal Logic ---
             const modal = document.getElementById('contact-modal');
